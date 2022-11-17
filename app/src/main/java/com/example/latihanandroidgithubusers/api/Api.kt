@@ -1,8 +1,8 @@
-package com.example.githubusers.api
+package com.example.latihanandroidgithubusers.api
 
-import com.example.githubusers.data.model.DetailUserResponse
-import com.example.githubusers.data.model.RepoUserResponse
-import com.example.githubusers.data.model.UserResponse
+import com.example.latihanandroidgithubusers.data.model.DetailUserResponse
+import com.example.latihanandroidgithubusers.data.model.RepoUserResponse
+import com.example.latihanandroidgithubusers.data.model.UserResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers

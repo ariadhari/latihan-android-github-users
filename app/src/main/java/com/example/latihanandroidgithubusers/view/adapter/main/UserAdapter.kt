@@ -1,4 +1,4 @@
-package com.example.githubusers.ui.main
+package com.example.latihanandroidgithubusers.view.adapter.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import com.example.githubusers.data.model.User
-import com.example.githubusers.databinding.ItemUserBinding
+import com.example.latihanandroidgithubusers.data.model.User
+import com.example.latihanandroidgithubusers.databinding.ItemUserBinding
 
 class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 

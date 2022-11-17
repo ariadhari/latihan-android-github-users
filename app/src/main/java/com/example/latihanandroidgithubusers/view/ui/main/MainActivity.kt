@@ -1,5 +1,6 @@
-package com.example.githubusers.ui.main
+package com.example.latihanandroidgithubusers.view.ui.main
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,9 +9,11 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubusers.data.model.User
-import com.example.githubusers.databinding.ActivityMainBinding
-import com.example.githubusers.ui.detail.DetailUserActivity
+import com.example.latihanandroidgithubusers.data.model.User
+import com.example.latihanandroidgithubusers.databinding.ActivityMainBinding
+import com.example.latihanandroidgithubusers.view.adapter.main.UserAdapter
+import com.example.latihanandroidgithubusers.view.ui.detailuser.DetailUserActivity
+import com.example.latihanandroidgithubusers.viewmodel.main.UserViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: UserViewModel
     private lateinit var adapter: UserAdapter
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -38,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         // inisiasi viewModel
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(UserViewModel::class.java)
+        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[UserViewModel::class.java]
 
         // set RecyclerView dengan binding
         binding.apply {

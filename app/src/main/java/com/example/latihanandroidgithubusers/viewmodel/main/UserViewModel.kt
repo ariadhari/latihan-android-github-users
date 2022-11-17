@@ -1,12 +1,12 @@
-package com.example.githubusers.ui.main
+package com.example.latihanandroidgithubusers.viewmodel.main
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.githubusers.api.RetrofitClient
-import com.example.githubusers.data.model.User
-import com.example.githubusers.data.model.UserResponse
+import com.example.latihanandroidgithubusers.api.RetrofitClient
+import com.example.latihanandroidgithubusers.data.model.User
+import com.example.latihanandroidgithubusers.data.model.UserResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -1,4 +1,4 @@
-package com.example.githubusers.helper
+package com.example.latihanandroidgithubusers.helper
 
 import android.annotation.SuppressLint
 import java.text.ParseException

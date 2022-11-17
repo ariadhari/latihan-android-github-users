@@ -1,4 +1,4 @@
-package com.example.githubusers
+package com.example.latihanandroidgithubusers
 
 import org.junit.Test
 

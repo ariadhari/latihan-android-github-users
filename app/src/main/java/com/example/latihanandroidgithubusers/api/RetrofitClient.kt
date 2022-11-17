@@ -1,4 +1,4 @@
-package com.example.githubusers.api
+package com.example.latihanandroidgithubusers.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

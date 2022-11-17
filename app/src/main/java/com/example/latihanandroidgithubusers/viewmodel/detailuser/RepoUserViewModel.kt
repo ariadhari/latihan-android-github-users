@@ -1,11 +1,11 @@
-package com.example.githubusers.ui.detail
+package com.example.latihanandroidgithubusers.viewmodel.detailuser
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.githubusers.api.RetrofitClient
-import com.example.githubusers.data.model.RepoUserResponse
+import com.example.latihanandroidgithubusers.api.RetrofitClient
+import com.example.latihanandroidgithubusers.data.model.RepoUserResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,6 +36,5 @@ class RepoUserViewModel: ViewModel() {
     fun getRepoByUser(): LiveData<ArrayList<RepoUserResponse>> {
         return listRepo
     }
-
 
 }
