@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 searchUser()
             }
 
-            etQuery.setOnKeyListener { v, keyCode, event ->
+            etQuery.setOnKeyListener { _, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER){
                     searchUser()
                     return@setOnKeyListener true
