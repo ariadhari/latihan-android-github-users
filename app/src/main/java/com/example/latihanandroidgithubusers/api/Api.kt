@@ -3,31 +3,28 @@ package com.example.latihanandroidgithubusers.api
 import com.example.latihanandroidgithubusers.data.model.DetailUserResponse
 import com.example.latihanandroidgithubusers.data.model.RepoUserResponse
 import com.example.latihanandroidgithubusers.data.model.UserResponse
-import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
-//import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface Api {
     // Search users endpoint
     @GET("search/users")
-//    @Headers("Authorization: token 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")
-    fun getSearchUsers(
+    suspend fun getSearchUsers( // add suspend for coroutines
         @Query("q") query: String
-    ): Call<UserResponse>
+    ): Response<UserResponse> // using coroutines
 
     // Detail user endpoint
     @GET("users/{username}")
-//    @Headers("Authorization: token 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")
-    fun getDetailUser(
+    suspend fun getDetailUser( // add suspend for coroutines
         @Path("username") username : String
-    ): Call<DetailUserResponse>
+    ): Response<DetailUserResponse> // using coroutines
 
     // Repositories by user endpoint
     @GET("users/{username}/repos")
-//    @Headers("Authorization: token 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")
-    fun getRepoByUser(
+    suspend fun getRepoByUser( // add suspend for coroutines
         @Path("username") username : String
-    ): Call<ArrayList<RepoUserResponse>>
+    ): Response<ArrayList<RepoUserResponse>> // using coroutines
+
 }
