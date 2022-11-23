@@ -1,24 +1,29 @@
 package com.example.latihanandroidgithubusers.viewmodel.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.latihanandroidgithubusers.api.RetrofitClient
+import androidx.lifecycle.viewModelScope
 import com.example.latihanandroidgithubusers.data.model.User
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import com.example.latihanandroidgithubusers.repository.UserRepository
 import kotlinx.coroutines.launch
 
 
-class UserViewModel : ViewModel() {
-    val listUser = MutableLiveData<ArrayList<User>>()
+class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
+    private val listUser = MutableLiveData<ArrayList<User>>()
 
     fun setSearchUsers(query: String){
         // using coroutine
-        GlobalScope.launch(Dispatchers.IO){
-            val response = RetrofitClient.apiInstance.getSearchUsers(query)
-            if (response.isSuccessful){
-                listUser.postValue(response.body()?.items)
+        viewModelScope.launch {
+            try {
+                val response = userRepository.setSearchUsers(query)
+                if (response.isSuccessful){
+                    listUser.postValue(response.body()?.items)
+                }
+            }
+            catch (e:Exception){
+                Log.d("main", "setSearchUsers: ${e.message}")
             }
         }
     }

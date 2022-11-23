@@ -1,6 +1,5 @@
 package com.example.latihanandroidgithubusers.view.ui.main
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,9 +10,11 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.latihanandroidgithubusers.data.model.User
 import com.example.latihanandroidgithubusers.databinding.ActivityMainBinding
+import com.example.latihanandroidgithubusers.repository.UserRepository
 import com.example.latihanandroidgithubusers.view.adapter.main.UserAdapter
 import com.example.latihanandroidgithubusers.view.ui.detailuser.DetailUserActivity
 import com.example.latihanandroidgithubusers.viewmodel.main.UserViewModel
+import com.example.latihanandroidgithubusers.viewmodel.main.UserViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,15 +22,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: UserViewModel
     private lateinit var adapter: UserAdapter
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val userRepository = UserRepository()
+        val viewModelFactory = UserViewModelFactory(userRepository)
 
         // inisiasi user adapter
         adapter = UserAdapter()
-        adapter.notifyDataSetChanged()
 
         adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
             override fun onItemClicked(data: User) {
@@ -38,11 +39,10 @@ class MainActivity : AppCompatActivity() {
                     startActivity(it)
                 }
             }
-
-        })
+       })
 
         // inisiasi viewModel
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[UserViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[UserViewModel::class.java]
 
         // set RecyclerView dengan binding
         binding.apply {

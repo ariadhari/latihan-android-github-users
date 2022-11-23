@@ -11,9 +11,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.example.latihanandroidgithubusers.databinding.ActivityDetailUserBinding
+import com.example.latihanandroidgithubusers.repository.DetailUserRepository
+import com.example.latihanandroidgithubusers.repository.RepoUserRepository
 import com.example.latihanandroidgithubusers.view.adapter.detailuser.DetailUserAdapter
 import com.example.latihanandroidgithubusers.viewmodel.detailuser.DetailUserViewModel
+import com.example.latihanandroidgithubusers.viewmodel.detailuser.DetailUserViewModelFactory
 import com.example.latihanandroidgithubusers.viewmodel.detailuser.RepoUserViewModel
+import com.example.latihanandroidgithubusers.viewmodel.detailuser.RepoUserViewModelFactory
 
 class DetailUserActivity : AppCompatActivity() {
     companion object{
@@ -29,6 +33,10 @@ class DetailUserActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val detailUserRepository = DetailUserRepository()
+        val repoUserRepository = RepoUserRepository()
+        val viewModelFactory = DetailUserViewModelFactory(detailUserRepository)
+        val viewModelRepoFactory = RepoUserViewModelFactory(repoUserRepository)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -40,8 +48,7 @@ class DetailUserActivity : AppCompatActivity() {
         // inisiasi detail user adapter
         adapter = DetailUserAdapter()
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-            DetailUserViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory)[DetailUserViewModel::class.java]
 
         viewModel.setUserDetail(username.toString())
         viewModel.getUserDetail().observe(this) {
@@ -60,8 +67,7 @@ class DetailUserActivity : AppCompatActivity() {
             }
         }
 
-        viewModelRepo = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-            RepoUserViewModel::class.java)
+        viewModelRepo = ViewModelProvider(this, viewModelRepoFactory)[RepoUserViewModel::class.java]
 
         viewModelRepo.setRepoUser(username.toString())
         showLoading(true)
