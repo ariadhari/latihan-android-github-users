@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.latihanandroidgithubusers.api.RetrofitClient
 import com.example.latihanandroidgithubusers.data.model.RepoUserResponse
 import com.example.latihanandroidgithubusers.repository.RepoUserRepository
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
@@ -19,7 +18,7 @@ class RepoUserViewModel(private val repoUserRepository: RepoUserRepository): Vie
         // using coroutine
         viewModelScope.launch {
             try {
-                val response = RetrofitClient.apiInstance.getRepoByUser(username)
+                val response = repoUserRepository.setRepoUser(username)
                 if (response.isSuccessful){
                     listRepo.postValue(response.body())
                 }
